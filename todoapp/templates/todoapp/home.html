@@ -34,6 +34,7 @@
 	li a:hover {
 		background-color: #66ff66;
 	}
+
 	table,th, td {
 		border: 1px solid;
 		border-color: #96D4D4;
@@ -43,10 +44,11 @@
 	a{
 		text-decoration: none;
 	}
-	a:hover
-	{
-		background-color: #ff6666;
+	
+	form{
+		padding : 10px
 	}
+
 	</style>
 	
 	<div class = "container">
@@ -56,6 +58,19 @@
 		</ul>
 		
 	</div>
+
+	<div class = "container">
+		
+			<form  action="{% url 'search' %}" align = "center" method="get">
+		        {% csrf_token %}
+		        <input type="text" name="search_term" placeholder="Search here">
+		        <button type="submit" >Search</button>
+		    </form>
+		
+		
+	</div>
+
+	
 </head>
 <body>
 	{%block content%}
@@ -63,8 +78,8 @@
 	   		{% for item in item_list %}
 	   			<table style = "width : 100%">
 		   		<tr>
-			   		<td style="width : 80%">{{item.task}}</td>
-			   		<td><a href={% url 'task_delete' item.pk %} title="">Delete</a></td>
+			   		<td style="width : 80%"><a href={% url 'task_detail' item.pk %} title="">{{item.task}}</a></td>
+			   		<td><a href={% url 'task_delete' item.pk %} title="" style="color:#ff6666">Delete</a></td>
 			   	</tr>
 		   		</table>
 			
